@@ -12,7 +12,23 @@ class TwitterBot:
     def login(self):
         bot = self.bot
         bot.get('https://twitter.com/')
-        time.sleep(3) # lets the twitter page load up
+        time.sleep(7) # lets the twitter page load up
+        email = bot.find_element_by_name("session[username_or_email]")
+        password = bot.find_element_by_name("session[password]")
+        email.clear()
+        password.clear()
+        email.send_keys(self.username)
+        password.send_keys(self.password)
+        password.send_keys(Keys.RETURN) #logs us in
+        time.sleep(5) #Lets us load in.
+    
+    #Purpose: Like the tweets by hastag
+    def like_tweet_hastag(self, hashtag):
+        bot = self.bot
+        bot.get('https://twitter.com/search?q=' + hashtag + '&src=typed_query')
+        time.sleep(5)
+
 
 ellis = TwitterBot('angelwithashotgun4348@gmail.com', 'passwordBOT')
 ellis.login()
+ellis.like_tweet_hastag('League of Legends')
