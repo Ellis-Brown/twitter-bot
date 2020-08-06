@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import keys
+from selenium.webdriver.common.keys import Keys
 import time 
 
 class TwitterBot:
@@ -14,5 +14,5 @@ class TwitterBot:
         bot.get('https://twitter.com/')
         time.sleep(3) # lets the twitter page load up
 
-ellis = TwitterBot('enter@gmail.com', 'password')
+ellis = TwitterBot('angelwithashotgun4348@gmail.com', 'passwordBOT')
 ellis.login()
