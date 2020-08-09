@@ -30,13 +30,20 @@ class TwitterBot:
         for i in range(1, 5):
             bot.execute_script('window.scrollTo(0,document.body.scrollHeight)')
             time.sleep(2)
-            tweets = bot.find_elements_by_class_name('tweet')
+            tweets = bot.find_elements_by_class_name("css-1dbjc4n r-1adg3ll")
             print(tweets)
-            links = [elem.get_attribute('data-permalink-path') for elem in tweets]
-            print(links)
-
             tweetLinks = [i.get_attribute('href')
-                for i in bot.find_elements_by_xpath("//a[@dir='auto']")] # Looking for all the element where they have an attribute dir=auto - not the best way but I was in a hurry, lol
+                for i in bot.find_elements_by_xpath("//a[@dir='auto']")] # Looking for all the element where they have an attribute dir=auto 
+            print(tweetLinks)
+            for link in tweetLinks:
+                bot.get('https://twitter.com' + link)
+                try:
+                    bot.find_element_by_class_name('HeartAnimation').click()
+                    time.sleep(10)
+                except Exception as ex:
+                    time.sleep(60)
+
+           
 
             
           
