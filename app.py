@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time 
+import re
 
 class TwitterBot:
     def __init__(self,username,password): #using __init__ is like a constructor
@@ -42,8 +43,6 @@ class TwitterBot:
                     time.sleep(10)
                 except Exception as ex:
                     time.sleep(60)
-
-           
 
             
           
