@@ -21,8 +21,8 @@ def findStats(summoners):
             score = getScore(rank, lp)
             user = ign + ": " + rank + " " + lp + "  score: " + str(score)
             totalPoints += score
-            print(user)
             output.write('%s\n' % user)
+            print(user)
         except:
             print("Error occured trying to find summoner: " + ign)
 
@@ -45,18 +45,19 @@ def readFile():
         result = re.search(':(.*),', line)
         teamName = re.search('-(.*)-', line)
         if teamName and currTeam:
+
             totalArray.append([oldTeamName, summonerNameArray])
             oldTeamName = teamName[1].strip()
             summonerNameArray = []
         elif teamName:
+
             currTeam = True
             oldTeamName = teamName[1].strip()
-        if result:
+        elif result:
+
             summonerNameArray.append(result[1].strip())
+
     outputFile = open('SummonerNames.txt', 'w')
-    for listitem in summonerNameArray:
-        outputFile.write('%s\n' % listitem)
-    print(totalArray)
     return totalArray
 
 
@@ -76,6 +77,5 @@ def getScore(rank, lp):
 
 file = open('Team-scores.txt', 'w')
 
-for entry in readFile()[1]:
-    average = findStats(entry[1])
-    file.write(str(entry[1]) + " " + str(average))
+for entry in readFile():
+    file.write(entry[0] + " : " str(findStats(entry[1])) + "\n")
